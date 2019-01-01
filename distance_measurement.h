@@ -1,6 +1,10 @@
 #ifndef DISTANCE_MEASUREMENT_H_
 #define DISTANCE_MEASUREMENT_H_
 
-int measureDistance(int triggerPort, int triggerPin, int echoPort, int echoPin);
+#define RIGHT_DISTANCE_SENSOR 0
+#define LEFT_DISTANCE_SENSOR 1
+#define FRONT_DISTANCE_SENSOR 2
+
+int findEnemy(int sensorNumber);
 
 #endif /* DISTANCE_MEASUREMENT_H_ */

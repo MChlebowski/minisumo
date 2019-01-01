@@ -10,21 +10,15 @@ void prepareEntry();
 State* nextFromPrepare();
 
 void idleEntry();
-State* nextFromIdle();
-
 void goStraightEntry();
-State* nextFromGoStraight();
-
 void goLeftEntry();
-State* nextFromGoLeft();
-
 void goRightEntry();
-State* nextFromGoRight();
+State* nextInFight();
 
 void goBackEntry();
 State* nextFromGoBack();
 
 void stopEntry();
 State* nextFromStop();
-
+	
 #endif /* STATE_H_ */
