@@ -41,14 +41,14 @@ void goStraightEntry()
 
 void goLeftEntry()
 {
-	setMotorSpeed(LEFT_MOTOR, STRAIGHT, FAST);
-	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, MEDIUM);
+	setMotorSpeed(LEFT_MOTOR, STRAIGHT, MEDIUM);
+	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, FAST);
 }
 
 void goRightEntry()
 {
-	setMotorSpeed(LEFT_MOTOR, STRAIGHT, MEDIUM);
-	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, FAST);
+	setMotorSpeed(LEFT_MOTOR, STRAIGHT, FAST);
+	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, MEDIUM);
 }
 
 State* nextInFight()
