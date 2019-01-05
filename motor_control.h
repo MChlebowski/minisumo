@@ -5,10 +5,10 @@
 #define RIGHT_MOTOR 1
 #define STRAIGHT 0
 #define BACK 1
-#define STOP 0
-#define SLOW 40
-#define MEDIUM 75
-#define FAST 100
+#define STOP 255
+#define SLOW 100
+#define MEDIUM 50
+#define FAST 0
 
 void setMotorSpeed(int motorNumber, int direction, int speed);
 
