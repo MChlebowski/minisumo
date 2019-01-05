@@ -5,8 +5,6 @@
 #include "white_line_measurement.h"
 #include "motor_control.h"
 
-extern State prepare;
-
 int main(void)
 {
 	//to check
@@ -23,7 +21,7 @@ int main(void)
 	
 	TCCR0 = (1<<CS00) | (1<<CS02); // perpare timer
 	
-	State* currentState = &prepare;
+	State* currentState = getInitialState();
 	currentState->onEntry();
     while (1) 
     {

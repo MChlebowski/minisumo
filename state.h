@@ -20,5 +20,7 @@ State* nextFromGoBack();
 
 void stopEntry();
 State* nextFromStop();
+
+State* getInitialState();
 	
 #endif /* STATE_H_ */

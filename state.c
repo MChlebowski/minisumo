@@ -116,3 +116,8 @@ State* nextFromStop()
 {
 	return &stop;
 }
+
+State* getInitialState()
+{
+	return &prepare;
+}
