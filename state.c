@@ -2,9 +2,10 @@
 #include "distance_measurement.h"
 #include "white_line_measurement.h"
 #include "motor_control.h"
-#include "led_control.h"
 #include "control_module.h"
 #include "timer_control.h"
+
+#include <avr/io.h>
 
 State prepare = {.onEntry = prepareEntry, .nextState = nextFromPrepare};
 State idle = {.onEntry = idleEntry, .nextState = nextInFight};
@@ -16,21 +17,26 @@ State stop = {.onEntry = stopEntry, .nextState = nextFromStop};
 
 void prepareEntry()
 {
-	setLed(1, 1);
+	PINC |= (1<<5); //TODO
 	setMotorSpeed(LEFT_MOTOR, STRAIGHT, STOP);
 	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, STOP);
 }
 
 State* nextFromPrepare()
 {
-	return checkStart() ? &idle : &prepare;
+	if(checkStart())
+	{
+		PINC &= ~(1<<5); //TODO
+		return &idle;
+	}
+	return &prepare;
 }
 
 void idleEntry()
 {
-	setLed(1, 0);
+	PINC |= (1<<5);
 	setMotorSpeed(LEFT_MOTOR, STRAIGHT, SLOW);
-	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, MEDIUM);
+	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, FAST);
 }
 
 void goStraightEntry()
@@ -41,14 +47,14 @@ void goStraightEntry()
 
 void goLeftEntry()
 {
-	setMotorSpeed(LEFT_MOTOR, STRAIGHT, MEDIUM);
+	setMotorSpeed(LEFT_MOTOR, STRAIGHT, STOP);
 	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, FAST);
 }
 
 void goRightEntry()
 {
 	setMotorSpeed(LEFT_MOTOR, STRAIGHT, FAST);
-	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, MEDIUM);
+	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, STOP);
 }
 
 State* nextInFight()
@@ -59,13 +65,9 @@ State* nextInFight()
 	}
 	if(checkWhiteLine(LEFT_WHITE_LINE))
 	{
-		return &goRight;
+		return &goBack;
 	}
 	if(checkWhiteLine(RIGHT_WHITE_LINE))
-	{
-		return &goLeft;
-	}
-	if(checkWhiteLine(FRONT_WHITE_LINE))
 	{
 		return &goBack;
 	}
@@ -103,4 +105,14 @@ State* nextFromGoBack()
 		return &goBack;
 	}
 	return nextStateInFight;
+}
+
+void stopEntry()
+{
+	setMotorSpeed(LEFT_MOTOR, STRAIGHT, STOP);
+	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, STOP);
+}
+State* nextFromStop()
+{
+	return &stop;
 }

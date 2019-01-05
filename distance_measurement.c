@@ -12,5 +12,9 @@ int findEnemy(int sensorNumber) {
 	{
 		case LEFT_DISTANCE_SENSOR:
 		return PIND & 0x01;
+		case RIGHT_DISTANCE_SENSOR:
+		return PIND & 0x02;
+		case FRONT_DISTANCE_SENSOR:
+		return PIND & 0x04;
 	}
 }

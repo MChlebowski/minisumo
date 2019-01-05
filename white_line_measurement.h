@@ -3,7 +3,6 @@
 
 #define LEFT_WHITE_LINE 0
 #define RIGHT_WHITE_LINE 1
-#define FRONT_WHITE_LINE 2
 
 int checkWhiteLine(int sensorNumber);
 
