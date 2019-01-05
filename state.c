@@ -17,7 +17,7 @@ State stop = {.onEntry = stopEntry, .nextState = nextFromStop};
 
 void prepareEntry()
 {
-	PINC |= (1<<5); //TODO
+	PINC |= (1<<5); //TODO led pin
 	setMotorSpeed(LEFT_MOTOR, STRAIGHT, STOP);
 	setMotorSpeed(RIGHT_MOTOR, STRAIGHT, STOP);
 }
@@ -26,7 +26,7 @@ State* nextFromPrepare()
 {
 	if(checkStart())
 	{
-		PINC &= ~(1<<5); //TODO
+		PINC &= ~(1<<5); //TODO led pin
 		return &idle;
 	}
 	return &prepare;

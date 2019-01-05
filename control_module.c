@@ -4,10 +4,10 @@
 
 int checkStart()
 {
-	return !(PORTC & 0x04); //TODO
+	return !(PINC & 0x04); //TODO start switch pin
 }
 
 int checkStop()
 {
-	return !(PORTC & 0x08); //TODO
+	return !(PINC & 0x08); //TODO stop switch pin
 }

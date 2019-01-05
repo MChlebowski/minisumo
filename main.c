@@ -9,6 +9,7 @@ extern State prepare;
 
 int main(void)
 {
+	//to check
     DDRC = 0x00; //input
     DDRD = 0xff; //output
     DDRB = 0xff; //output

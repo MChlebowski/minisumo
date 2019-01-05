@@ -21,7 +21,7 @@ void setMotorSpeed(int motorNumber, int direction, int speed)
 		}
 		OCR1A = speed;
 	}
-	else //TODO
+	else //TODO right motor pins
 	{
 		if(direction == STRAIGHT)
 		{
